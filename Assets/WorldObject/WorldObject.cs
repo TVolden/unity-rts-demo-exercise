@@ -34,7 +34,16 @@ public class WorldObject : MonoBehaviour {
 
     protected virtual void OnGUI()
     {
-        if (currentlySelected) DrawSelection();
+        if (currentlySelected) //DrawSelection();
+        {
+            Highlight.ClearAll();
+            foreach (var r in GetComponentsInChildren<Renderer>())
+            {
+                Highlight.AddRenderer(r);
+            }
+            Highlight.Rebuild();
+        }
+
     }
 
     public void CalculateBounds()
